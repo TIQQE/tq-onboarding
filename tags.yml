@@ -1,0 +1,24 @@
+shared: &shared_tags
+    #Owner: #Name of assigned owner
+    #Customer: #Name of the customer
+    #Project: #Name of the project
+    #ProjectKey: #Project identifier in JIRA
+    #CostCenter:  Who is paying?
+    #Name: 
+    #ConfidentialityLevel: #Public | InternalUse | RegulatoryRestriction | Confidential
+
+prod:
+  shared: &shared_prod_tags
+    Environment: Production #Name of environment that this resource belongs to. If it belongs to multiple environments, multiple values may be specified. Valid environment names include (case-sensitive): Development, Stage, Test, AcceptanceTest, SystemTest, Production
+    SLA: 24-7
+  stack:
+    <<: *shared_prod_tags
+    <<: *shared_tags
+
+test:
+  shared: &shared_test_tags
+    Environment: Test
+    SLA: Weekday
+  stack:
+    <<: *shared_test_tags
+    <<: *shared_tags

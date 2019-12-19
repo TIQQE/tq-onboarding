@@ -1,0 +1,35 @@
+service:
+  name: tq-serverless-service-template
+
+# Add the serverless-webpack plugin
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: test
+  region: eu-west-1
+  environment: ${file(env.yml):${self:custom.stage}}
+  deploymentBucket: serverless.deploys
+  stackTags: ${file(tags.yml):${opt:stage}.stack}
+
+custom:
+  stage: "${opt:stage, self:provider.stage}"
+
+functions:
+  # This function will be triggered by a HTTP GET request
+  # and will return a JSON object.
+  hello:
+    handler: src/hello/handler.hello #src/hello/handler is the path to the file. .hello is the name of the function to run in that file.
+    memorySize: 128
+    timeout: 5
+    events:
+    - http:
+        method: get
+        path: hello
+        cors: true
+
+package:
+  individually: true

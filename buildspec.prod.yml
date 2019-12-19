@@ -1,0 +1,18 @@
+version: 1.0
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+    commands:
+      - npm install
+  pre_build:
+    commands:
+      - npm run lint
+      - npm test
+  build:
+    commands:
+      - node --max-old-space-size=8192 ./node_modules/.bin/serverless deploy -s prod -v
+cache:
+  paths:
+    - 'node_modules/**/*'

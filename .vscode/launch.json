@@ -1,0 +1,45 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug Lambdas",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/serverless/bin/serverless",
+            "args": [
+                "-r",
+                "ts-node/register",
+                "offline",
+                "-s",
+                "test",
+                "--colors"
+            ],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "${workspaceFolder}/lib/**/*.js",
+                "<node_internals>/**/*.js"
+            ]
+        },
+        {
+            "name": "Debug Mocha Tests",
+            "type": "node",
+            "request": "launch",
+            "program": "${workspaceRoot}/node_modules/.bin/_mocha",
+            "args": [
+                "-r",
+                "ts-node/register",
+                "${workspaceRoot}/test/**/*.ts",
+                "--colors"
+            ],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector",
+            "skipFiles": [
+                "${workspaceFolder}/node_modules/**/*.js",
+                "${workspaceFolder}/lib/**/*.js",
+                "<node_internals>/**/*.js"
+            ]
+        }
+    ]
+}
