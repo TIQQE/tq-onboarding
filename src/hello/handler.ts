@@ -8,6 +8,6 @@ export const hello = async (event: APIGatewayEvent, context: Context) => {
   log.setup({ context });
   log.info(`Starting Hello function ${event.pathParameters} in stage ${env.stage}`);
 
-  let responseJson = { message: 'Hello' };
+  let responseJson = { message: 'Hello Akke' };
   return ok(responseJson);
 };

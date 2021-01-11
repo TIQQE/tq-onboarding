@@ -12,7 +12,7 @@ provider:
   stage: test
   region: eu-west-1
   environment: ${file(env.yml):${self:custom.stage}}
-  deploymentBucket: serverless.deploys
+  deploymentBucket: 200709891512.eu-north-1serverless.deploys
   stackTags: ${file(tags.yml):${opt:stage}.stack}
 
 custom:
